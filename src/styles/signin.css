@@ -1,0 +1,30 @@
+@font-face {
+  font-family: muiFont;
+  src: url(../fonts/Roboto/Roboto-Bold.ttf);
+}
+@font-face {
+  font-family: poppo;
+  src: url(../fonts/Poppins/Poppins-ExtraLight.ttf);
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "poppo";
+  color: rgba(10, 10, 10, 1);
+}
+.mContainer {
+  background-image: url("../images/signin_back.jpg");
+  position: absolute;
+  min-height: 100vh;
+  min-width: 100vw;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+}
+.mContainer h1 {
+  font-size: 5rem;
+  color: rgba(10, 10, 10, 0.8);
+  text-align: center;
+  margin-top: 5vh;
+}
