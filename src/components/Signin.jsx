@@ -1,10 +1,9 @@
 import React from "react";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "../styles/signin.css";
 import { makeStyles } from "@mui/styles";
 import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
 /*
 {
   cnic: "1234",
@@ -14,19 +13,18 @@ import Button from "@mui/material/Button";
 const useStyles = makeStyles({
   root: {
     color: "black",
-    margin: "12px 1rem 0 37vw",
-    width: "25vw",
-  },
-  up: {
-    color: "black",
-    margin: "5rem 1rem 0 37vw",
+    marginLeft: "10vh",
     width: "25vw",
   },
 });
-const Temp = () => {
+
+//-----
+const Signin = ({ setShow }) => {
   const [cnic, setCnic] = useState("");
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
+
+  // Submit Signin Function
   const SubmitSignin = async () => {
     console.log(cnic, email);
     const resposne = await fetch("/api/signin/", {
@@ -49,47 +47,54 @@ const Temp = () => {
     } catch (x) {}
     console.log(achaResponse);
   };
+  //-----
   const classes = useStyles();
+
+  //- -----
   return (
-    <div>
-      <div className="mContainer">
-        <h1>Ecommerce Signin</h1>
-        <hr color="gray" />
-        <div className="inputFields">
-          <TextField
-            className={classes.up}
-            value={cnic}
-            onChange={(s) => {
-              setCnic(s.target.value);
-            }}
-            id="outlined-basic"
-            label="cnic"
-            variant="outlined"
-          />
-          <br />
-          <TextField
-            className={classes.root}
-            value={email}
-            onChange={(s) => {
-              setEmail(s.target.value);
-            }}
-            id="outlined-basic"
-            label="email"
-            variant="outlined"
-            type="password"
-            margin="dense"
-          />
-        </div>
-        <div className="signButtons">
-          <Button className={classes.root} onClick={SubmitSignin}>
-            Sign In
-          </Button>
-          <Link to="/signup">
-            <Button className={classes.root}>Sign Up</Button>
-          </Link>
+    <div className="mContainer">
+      <div className="float-child">
+        <div className="white">
+          <h1>Signin</h1>
+          <div className="inputFields">
+            <TextField
+              className={classes.root}
+              value={cnic}
+              onChange={(s) => {
+                setCnic(s.target.value);
+              }}
+              id="outlined-basic"
+              label="Email"
+              variant="outlined"
+            />
+            <br />
+            <TextField
+              className={classes.root}
+              value={email}
+              onChange={(s) => {
+                setEmail(s.target.value);
+              }}
+              id="outlined-basic"
+              label="Password"
+              variant="outlined"
+              type="password"
+              margin="dense"
+            />
+          </div>
+          <div className="signButtons">
+            <button className="si" onClick={SubmitSignin}>
+              Sign In
+            </button>
+            <button onClick={setShow} className="su">
+              Register
+            </button>
+          </div>
+          <div className="footer">
+            <p>All Copyrights Not Reserved ofcourse.</p>
+          </div>
         </div>
       </div>
     </div>
   );
 };
-export default Temp;
+export default Signin;

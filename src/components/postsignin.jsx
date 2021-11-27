@@ -1,4 +1,3 @@
-import { dialogContentTextClasses } from "@mui/material";
 import React from "react";
 
 export default class postSignin extends React.Component {
@@ -13,9 +12,11 @@ export default class postSignin extends React.Component {
     });
   }
   render() {
-
-    return <div>
+    return (
+      <div>
         <h1>LOGIN SUCCESSFUL</h1>
-        {JSON.stringify(this.state.usersData)}</div>;
+        {JSON.stringify(this.state.usersData)}
+      </div>
+    );
   }
 }
