@@ -20,11 +20,9 @@ const SignUp = ({ setShow }) => {
   const [inputData, setData] = useState({
     firstName: "",
     lastName: "",
-    cnic: "",
     email: "",
-    gender: "Helicopter",
+    cnic: "",
     password: "",
-    phone: "",
     role: "Seller",
   });
   /*
@@ -128,7 +126,7 @@ const SignUp = ({ setShow }) => {
               Register
             </button>
             <button onClick={setShow} className="su">
-              Back To Signin
+              Back To Sign In
             </button>
           </div>
           <div className="footer">

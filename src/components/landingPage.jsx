@@ -1,6 +1,6 @@
 import { useTransition } from "@react-spring/core";
 import { animated } from "@react-spring/web";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../styles/signin.css";
 import RightHalf from "./RightHalf";
 import Signin from "./Signin";
@@ -13,6 +13,7 @@ function LandingPage() {
     leave: { y: -60, opacity: 0 },
     delay: 50,
   });
+  useEffect(() => {}, []);
   return (
     <div>
       {transitions((styles, item) => {

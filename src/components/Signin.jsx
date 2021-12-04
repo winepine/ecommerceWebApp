@@ -26,7 +26,6 @@ const Signin = ({ setShow }) => {
 
   // Submit Signin Function
   const SubmitSignin = async () => {
-    console.log(cnic, email);
     const resposne = await fetch("/api/signin/", {
       headers: {
         Accept: "application/json",
@@ -34,12 +33,11 @@ const Signin = ({ setShow }) => {
       },
       method: "POST",
       body: JSON.stringify({
-        cnic: cnic,
-        email: email,
+        email: cnic,
+        password: email,
       }),
     });
     const achaResponse = await resposne.json();
-    navigate("/postSignin");
     try {
       if (achaResponse.cnic && achaResponse.email) {
         navigate("/postSignin");
