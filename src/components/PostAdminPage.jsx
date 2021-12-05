@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import "../styles/signin.css";
+import { useNavigate } from "react-router";
 import AddCategory from "./AdminComps/AddCategory";
 import AddProduct from "./AdminComps/AddProduct";
 import CreateAdmin from "./AdminComps/CreateAdmin";
 import DeleteUser from "./AdminComps/DeleteUser";
-import FindUser from "./AdminComps/FindUser";
+import ViewDetails from "./AdminComps/ViewDetails";
 const PostAdminPage = () => {
+  const navigate = useNavigate();
+  const [userdata, setUserdata] = useState({});
   const onAdminButtonClick = (e) => {
     Object.keys(buttons).forEach((v) => (buttons[v] = false));
     setButtons({
@@ -14,11 +17,32 @@ const PostAdminPage = () => {
     });
   };
   useEffect(() => {
+    let token = localStorage.getItem("ecomtoken");
+    if (!token) navigate("/");
+    async function fetchData() {
+      try {
+        const result = await fetch(
+          "/api/homepage/?authorization=bearer " + token
+        );
+        const user = await result.json();
+        setUserdata(user);
+      } catch (x) {
+        localStorage.removeItem("ecomtoken");
+        navigate("/");
+      }
+    }
+    fetchData();
     document.title = "Admin Page";
+    // localStorage.setItem("ecomtoken", "123");
+    // if (token) {
+    //   console.log("YES");
+    // } else {
+    //   navigate("/");
+    // }
   }, []);
   const [buttons, setButtons] = useState({
     addproduct: true,
-    finduser: false,
+    viewdetails: false,
     addcategory: false,
     deleteuser: false,
     createadmin: false,
@@ -43,13 +67,13 @@ const PostAdminPage = () => {
                 Add Product
               </button>
               <button
-                name="finduser"
+                name="viewdetails"
                 className={
                   buttons.finduser ? "adminSelected" : "adminNotSelected"
                 }
                 onClick={onAdminButtonClick}
               >
-                Find User
+                View Details
               </button>
               <button
                 name="addcategory"
@@ -84,7 +108,7 @@ const PostAdminPage = () => {
         <div className="float-child2">
           <div className="adminright">
             {buttons.addproduct && <AddProduct />}
-            {buttons.finduser && <FindUser />}
+            {buttons.viewdetails && <ViewDetails adminDetails={userdata} />}
             {buttons.addcategory && <AddCategory />}
             {buttons.deleteuser && <DeleteUser />}
             {buttons.createadmin && <CreateAdmin />}

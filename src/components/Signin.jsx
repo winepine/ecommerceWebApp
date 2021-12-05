@@ -39,11 +39,15 @@ const Signin = ({ setShow }) => {
     });
     const achaResponse = await resposne.json();
     try {
-      if (achaResponse.cnic && achaResponse.email) {
+      if (achaResponse.token) {
+        localStorage.setItem("ecomtoken", achaResponse.token);
         navigate("/postSignin");
+        return;
       }
-    } catch (x) {}
-    console.log(achaResponse);
+    } catch (x) {
+      alert("Error Login Failed");
+    }
+    alert("Error Login Failed");
   };
   //-----
   const classes = useStyles();

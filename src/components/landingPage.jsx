@@ -5,6 +5,7 @@ import "../styles/signin.css";
 import RightHalf from "./RightHalf";
 import Signin from "./Signin";
 import SignUp from "./Signup";
+import { useNavigate } from "react-router";
 function LandingPage() {
   const [show, set] = useState(true);
   const transitions = useTransition(show, {
@@ -13,7 +14,13 @@ function LandingPage() {
     leave: { y: -60, opacity: 0 },
     delay: 50,
   });
-  useEffect(() => {}, []);
+  const navigate = useNavigate();
+  useEffect(() => {
+    let token = localStorage.getItem("ecomtoken");
+    if (token) {
+      navigate("/postSignin");
+    }
+  }, []);
   return (
     <div>
       {transitions((styles, item) => {
