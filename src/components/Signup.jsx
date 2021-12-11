@@ -23,7 +23,7 @@ const SignUp = ({ setShow }) => {
     email: "",
     cnic: "",
     password: "",
-    role: "Seller",
+    role: "user",
   });
   /*
    * SignUp Buttons Submits Data to API , POST Type request

@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import "../../styles/signin.css";
 const ViewDetails = (props) => {

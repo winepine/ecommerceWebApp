@@ -4,12 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "../styles/signin.css";
 import { makeStyles } from "@mui/styles";
 import TextField from "@mui/material/TextField";
-/*
-{
-  cnic: "1234",
-  email: "shafaqnawaz784@gmail.com",
-}
-*/
+
 const useStyles = makeStyles({
   root: {
     color: "black",
