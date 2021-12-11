@@ -27,6 +27,10 @@ const PostAdminPage = () => {
         );
         const user = await result.json();
         setUserdata(user);
+        if (user.role === "user") {
+          navigate("/user/home");
+          return;
+        }
       } catch (x) {
         localStorage.removeItem("ecomtoken");
         navigate("/");

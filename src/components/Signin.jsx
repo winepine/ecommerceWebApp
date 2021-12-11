@@ -36,7 +36,12 @@ const Signin = ({ setShow }) => {
     try {
       if (achaResponse.token) {
         localStorage.setItem("ecomtoken", achaResponse.token);
-        navigate("/postSignin");
+        localStorage.setItem("usertype", achaResponse.user.role);
+        if (achaResponse.user.role === "admin") {
+          navigate("/postSignin");
+        } else {
+          navigate("/user/home");
+        }
         return;
       }
     } catch (x) {

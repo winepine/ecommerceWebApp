@@ -4,8 +4,12 @@
   padding: 0;
   box-sizing: border-box;
 }
+/*
+  color: rgba(81, 110, 108, 0.9); Primary 
+  background-color: rgba(219, 226, 214, 1);
+*/
 .topbar {
-  background: rgba(230, 240, 240, 1);
+  background: rgba(219, 226, 214, 1);
   min-height: 8vh;
   color: black;
   text-align: center;
@@ -30,7 +34,7 @@ button {
   /* background-color: rgba(0, 0, 0, 0.075); */
 }
 .flexbox-container button:hover {
-  background-color: rgba(230, 240, 240, 1);
+  background: rgba(219, 226, 214, 1);
 }
 .flexbox-item {
   margin-left: 10px;
@@ -44,7 +48,8 @@ button {
   border: rgba(0, 0, 0, 0.1) solid 1px;
   position: absolute;
   border-radius: 8px;
-  background-color: rgba(230, 240, 240, 1);
+  background: rgba(219, 226, 214, 1);
+
   opacity: 0;
   transition: visibility 0s, opacity 0.4s, height 0.5s ease-in-out;
 

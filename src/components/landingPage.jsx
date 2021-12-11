@@ -18,7 +18,12 @@ function LandingPage() {
   useEffect(() => {
     let token = localStorage.getItem("ecomtoken");
     if (token) {
-      navigate("/postSignin");
+      let userType = localStorage.getItem("usertype");
+      if (userType === "admin") {
+        navigate("/postSignin");
+      } else {
+        navigate("/user/home");
+      }
     }
   }, []);
   return (

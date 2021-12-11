@@ -1,8 +1,11 @@
 import "./test.css";
-export default () => {
+import logo_sml from "../../images/logo_sml.jpg";
+const CatNav = () => {
   return (
     <div>
-      <div className="topbar">Ecommerce Site</div>
+      <div className="topbar">
+        <img height="70px" src={logo_sml} alt="" />
+      </div>
       <div className="flexbox-container">
         <div className="flexbox-item">
           <button className="hoverhere">Electronics</button>
@@ -68,3 +71,4 @@ export default () => {
     </div>
   );
 };
+export default CatNav;
