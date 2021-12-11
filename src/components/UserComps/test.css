@@ -3,7 +3,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  transition: ease-in-out all 0.4s;
 }
 .topbar {
   background: rgba(230, 240, 240, 1);

@@ -4,13 +4,13 @@ import PostAdminPage from "./components/PostAdminPage";
 import CatNav from "./components/UserComps/CatNav";
 function App() {
   return (
-    <CatNav />
-    // <BrowserRouter>
-    //   <Routes>
-    //     <Route exact path="/" element={<LandingPage />} />
-    //     <Route path="/postSignin" element={<PostAdminPage />} />
-    //   </Routes>
-    // </BrowserRouter>
+    //<CatNav />
+    <BrowserRouter>
+      <Routes>
+        <Route exact path="/" element={<LandingPage />} />
+        <Route path="/postSignin" element={<PostAdminPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 export default App;

@@ -69,7 +69,7 @@ const PostAdminPage = () => {
               <button
                 name="viewdetails"
                 className={
-                  buttons.finduser ? "adminSelected" : "adminNotSelected"
+                  buttons.viewdetails ? "adminSelected" : "adminNotSelected"
                 }
                 onClick={onAdminButtonClick}
               >

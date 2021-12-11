@@ -4,6 +4,7 @@ import i2 from "../images/icons/i2.png";
 import i3 from "../images/icons/i3.png";
 import i4 from "../images/icons/i4.png";
 import i5 from "../images/icons/i5.png";
+import logo from "../images/logo.jpeg";
 import { animated, useSpring } from "@react-spring/web";
 const RightHalf = () => {
   const rightStyle = useSpring({
@@ -24,14 +25,17 @@ const RightHalf = () => {
   return (
     <animated.div style={rightStyle} className="float-child">
       <div className="blue">
-        <h3>Ecommerce Store</h3>
+        {/* <h3>Ecommerce Store</h3> */}
         <div className="images">
+          <img height="370px" src={logo} alt="" />
+        </div>
+        {/* <div className="images">
           <img src={i1} alt="" />
           <img src={i5} alt="" />
           <img src={i2} alt="" />
           <img src={i3} alt="" />
           <img src={i4} alt="" />
-        </div>
+        </div> */}
         <h2>Looneywala's Leading Store With Over 10M+ Products</h2>
       </div>
     </animated.div>
