@@ -4,6 +4,6 @@ The Project Is Still In Development.
 ## Initialized Using Create-React-App
 ## STEPS TO Test Current Featues of Project
 
-git clone "this url"
-npm i
+git clone "this url" \n
+npm i \n
 npm start
