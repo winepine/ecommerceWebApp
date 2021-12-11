@@ -1,9 +1,4 @@
 import "../styles/signin.css";
-import i1 from "../images/icons/i1.png";
-import i2 from "../images/icons/i2.png";
-import i3 from "../images/icons/i3.png";
-import i4 from "../images/icons/i4.png";
-import i5 from "../images/icons/i5.png";
 import logo from "../images/logo.jpeg";
 import { animated, useSpring } from "@react-spring/web";
 const RightHalf = () => {

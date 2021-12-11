@@ -6,6 +6,7 @@ import AddProduct from "./AdminComps/AddProduct";
 import CreateAdmin from "./AdminComps/CreateAdmin";
 import DeleteUser from "./AdminComps/DeleteUser";
 import ViewDetails from "./AdminComps/ViewDetails";
+import { UserContext } from "./customHooks/UserContext";
 const PostAdminPage = () => {
   const navigate = useNavigate();
   const [userdata, setUserdata] = useState({});
@@ -107,11 +108,13 @@ const PostAdminPage = () => {
         </div>
         <div className="float-child2">
           <div className="adminright">
-            {buttons.addproduct && <AddProduct />}
-            {buttons.viewdetails && <ViewDetails adminDetails={userdata} />}
-            {buttons.addcategory && <AddCategory />}
-            {buttons.deleteuser && <DeleteUser />}
-            {buttons.createadmin && <CreateAdmin />}
+            <UserContext.Provider value={userdata}>
+              {buttons.addproduct && <AddProduct />}
+              {buttons.viewdetails && <ViewDetails />}
+              {buttons.addcategory && <AddCategory />}
+              {buttons.deleteuser && <DeleteUser />}
+              {buttons.createadmin && <CreateAdmin />}
+            </UserContext.Provider>
           </div>
         </div>
       </div>

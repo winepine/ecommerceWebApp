@@ -1,19 +1,22 @@
+import { useContext } from "react";
 import { useNavigate } from "react-router";
 import "../../styles/signin.css";
-const ViewDetails = (props) => {
+import { UserContext } from "../customHooks/UserContext";
+const ViewDetails = () => {
   const navigate = useNavigate();
   const logout = () => {
     localStorage.removeItem("ecomtoken");
     navigate("/");
   };
+  const userData = useContext(UserContext);
   return (
     <div className="mainHeader">
       <h1>Admin Details</h1>
       <div className="adminforms">
-        <h2>FirstName: {props.adminDetails.firstName}</h2>
-        <h2>LastName: {props.adminDetails.lastName}</h2>
-        <h2>Email: {props.adminDetails.email}</h2>
-        <h2>Role: {props.adminDetails.role}</h2>
+        <h2>FirstName: {userData.firstName}</h2>
+        <h2>LastName: {userData.lastName}</h2>
+        <h2>Email: {userData.email}</h2>
+        <h2>Role: {userData.role}</h2>
         <input
           type="password"
           className="adminField"

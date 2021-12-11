@@ -1,5 +1,6 @@
 import "../../styles/signin.css";
 const AddCategory = () => {
+  const addCat = async () => {};
   return (
     <div className="mainHeader">
       <h1>Add Category</h1>
