@@ -87,6 +87,7 @@ const Signin = ({ setShow }) => {
             <button className="si" onClick={SubmitSignin}>
               Sign In
             </button>
+            <br />
             <button onClick={setShow} className="su">
               Register
             </button>

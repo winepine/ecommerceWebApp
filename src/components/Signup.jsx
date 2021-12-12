@@ -125,6 +125,7 @@ const SignUp = ({ setShow }) => {
             <button className="si" onClick={submitFunction}>
               Register
             </button>
+            <br />
             <button onClick={setShow} className="su">
               Back To Sign In
             </button>

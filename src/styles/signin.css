@@ -54,11 +54,12 @@
 }
 .images {
   padding-top: 5vh;
-  margin-left: 5vw;
+  margin-left: 43%;
+  transform: translateX(-50%);
 }
-/* .images img {
-  margin-left: 1vw;
-} */
+.images img {
+  height: 40vh;
+}
 .float-child {
   width: 50%;
   height: 100%;
@@ -214,4 +215,26 @@ button {
 }
 .mainHeader button:hover {
   background-color: rgba(81, 110, 108, 0.5);
+}
+@media screen and (max-width: 1000px) {
+  .blue {
+    display: none;
+  }
+  .float-child {
+    width: 100vw;
+  }
+  .inputFields {
+    margin-left: 50%;
+    transform: translateX(-25%);
+  }
+  .signButtons {
+    margin-left: 50%;
+    transform: translateX(-25%);
+  }
+  .signButtons button {
+    min-width: 25vw;
+  }
+  .footer {
+    margin-left: 25vw;
+  }
 }

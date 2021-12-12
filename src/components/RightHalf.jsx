@@ -22,7 +22,7 @@ const RightHalf = () => {
       <div className="blue">
         {/* <h3>Ecommerce Store</h3> */}
         <div className="images">
-          <img height="370px" src={logo} alt="" />
+          <img src={logo} alt="" />
         </div>
         {/* <div className="images">
           <img src={i1} alt="" />
