@@ -1,12 +1,25 @@
 import "./test.css";
 import logo_sml from "../../images/logo_sml.jpg";
+import i1 from "../../images/icons/i1.png";
+import i2 from "../../images/icons/i2.png";
+import i3 from "../../images/icons/i3.png";
+import i4 from "../../images/icons/i4.png";
+import i5 from "../../images/icons/i5.png";
+import i6 from "../../images/icons/i6.png";
+import Carousel from "react-elastic-carousel";
+import Item from "./itemStyle";
+import { useRef } from "react";
 const CatNav = () => {
+  const CarouselRef = useRef(null);
   return (
     <div>
       <div className="topbar">
         <img height="70px" src={logo_sml} alt="" />
       </div>
-      <div className="flexbox-container">
+      <div
+        style={{ backgroundColor: "rgba(219,226,214,1)" }}
+        className="flexbox-container"
+      >
         <div className="flexbox-item">
           <button className="hoverhere">Electronics</button>
           <div className="dropitems">
@@ -67,6 +80,27 @@ const CatNav = () => {
             <button>Rikshaw</button>
           </div>
         </div>
+      </div>
+      <div className="carousel-container">
+        <Carousel
+          enableAutoPlay
+          autoPlaySpeed={3000}
+          ref={CarouselRef}
+          onNextEnd={(currentItem, pageIndex) => {
+            if (pageIndex === 4) {
+              setTimeout(() => {
+                CarouselRef.current.goTo(0);
+              }, 2000);
+            }
+          }}
+          itemsToShow={1}
+        >
+          <img src={i2} alt="" />
+          <img src={i3} alt="" />
+          <img src={i4} alt="" />
+          <img src={i5} alt="" />
+          <img src={i6} alt="" />
+        </Carousel>
       </div>
     </div>
   );

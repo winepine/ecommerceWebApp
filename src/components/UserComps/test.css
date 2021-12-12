@@ -45,6 +45,7 @@ button {
 .dropitems {
   visibility: hidden;
   height: 0;
+  z-index: 1;
   border: rgba(0, 0, 0, 0.1) solid 1px;
   position: absolute;
   border-radius: 8px;
@@ -68,4 +69,29 @@ button {
   height: auto;
   visibility: visible;
   opacity: 1;
+}
+.rec {
+  border: none;
+  background-color: white;
+}
+.rec-arrow {
+  border: none;
+  display: none;
+  background-color: white;
+}
+.rec-carousel-item:focus {
+  outline: none;
+  box-shadow: inset 0 0 1px 1px lightgrey;
+}
+.sc-iCfMLu button {
+  display: none;
+}
+.carousel-container {
+  background-color: rgba(219, 226, 214, 1);
+  transform: translateX(-1%);
+  transform: scaleX(102%);
+}
+.carousel-container img {
+  height: 400px;
+  width: 100%;
 }
