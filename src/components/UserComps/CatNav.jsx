@@ -9,6 +9,7 @@ import i6 from "../../images/icons/i6.png";
 import Carousel from "react-elastic-carousel";
 import Item from "./itemStyle";
 import { useRef } from "react";
+import ProductPage from "./ProductPage";
 const CatNav = () => {
   const CarouselRef = useRef(null);
   return (
@@ -17,7 +18,7 @@ const CatNav = () => {
         <img height="70px" src={logo_sml} alt="" />
       </div>
       <div
-        style={{ backgroundColor: "rgba(219,226,214,1)" }}
+        // style={{ backgroundColor: "rgba(219,226,214,1)" }}
         className="flexbox-container"
       >
         <div className="flexbox-item">
@@ -101,6 +102,23 @@ const CatNav = () => {
           <img src={i5} alt="" />
           <img src={i6} alt="" />
         </Carousel>
+      </div>
+      <div
+        style={{
+          padding: "20px 20px 20px -10px",
+          backgroundColor: "rgba(219,226,214,0.5)",
+        }}
+      >
+        <h1
+          style={{
+            fontSize: "5rem",
+            marginLeft: "50px",
+            color: "rgba(81,110,108,1)",
+          }}
+        >
+          Products
+        </h1>
+        <ProductPage />
       </div>
     </div>
   );

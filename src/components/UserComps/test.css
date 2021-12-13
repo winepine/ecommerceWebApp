@@ -9,7 +9,7 @@
   background-color: rgba(219, 226, 214, 1);
 */
 .topbar {
-  background: rgba(219, 226, 214, 1);
+  /* background: rgba(219, 226, 214, 1); */
   min-height: 8vh;
   color: black;
   text-align: center;

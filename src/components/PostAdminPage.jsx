@@ -38,12 +38,6 @@ const PostAdminPage = () => {
     }
     fetchData();
     document.title = "Admin Page";
-    // localStorage.setItem("ecomtoken", "123");
-    // if (token) {
-    //   console.log("YES");
-    // } else {
-    //   navigate("/");
-    // }
   }, []);
   const [buttons, setButtons] = useState({
     addproduct: true,
