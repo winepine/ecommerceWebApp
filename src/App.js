@@ -7,7 +7,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route exact path="/" element={<CatNav />} />
+        <Route exact path="/" element={<LandingPage />} />
         <Route path="/postSignin" element={<PostAdminPage />} />
         <Route exact path="/user/home" element={<PostUserPage />} />
       </Routes>

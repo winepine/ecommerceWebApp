@@ -1,21 +1,24 @@
 import "./test.css";
+import cartimg from "../../images/icons/cart.png";
 import logo_sml from "../../images/logo_sml.jpg";
-import i1 from "../../images/icons/i1.png";
-import i2 from "../../images/icons/i2.png";
-import i3 from "../../images/icons/i3.png";
-import i4 from "../../images/icons/i4.png";
-import i5 from "../../images/icons/i5.png";
-import i6 from "../../images/icons/i6.png";
-import Carousel from "react-elastic-carousel";
-import Item from "./itemStyle";
-import { useRef } from "react";
-import ProductPage from "./ProductPage";
-const CatNav = () => {
-  const CarouselRef = useRef(null);
+import { useNavigate } from "react-router";
+const CatNav = ({ setfunc }) => {
+  const navigate = useNavigate();
+  const logout = () => {
+    localStorage.removeItem("ecomtoken");
+    navigate("/");
+  };
   return (
     <div>
       <div className="topbar">
-        <img height="70px" src={logo_sml} alt="" />
+        <button>
+          <img src={cartimg} width="40px" alt="" />
+        </button>
+
+        <img onClick={setfunc} height="70px" src={logo_sml} alt="" />
+        <button onClick={logout} className="logout">
+          Logout
+        </button>
       </div>
       <div
         // style={{ backgroundColor: "rgba(219,226,214,1)" }}
@@ -34,7 +37,7 @@ const CatNav = () => {
         <div className="flexbox-item">
           <button className="hoverhere">Biryani</button>
           <div className="dropitems">
-            <button onClick={() => console.log("Clicked")}>India</button>
+            <button>India</button>
             <button>Pakaistan</button>
             <button>Indonesia</button>
             <button>Africa</button>
@@ -81,44 +84,6 @@ const CatNav = () => {
             <button>Rikshaw</button>
           </div>
         </div>
-      </div>
-      <div className="carousel-container">
-        <Carousel
-          enableAutoPlay
-          autoPlaySpeed={3000}
-          ref={CarouselRef}
-          onNextEnd={(currentItem, pageIndex) => {
-            if (pageIndex === 4) {
-              setTimeout(() => {
-                CarouselRef.current.goTo(0);
-              }, 2000);
-            }
-          }}
-          itemsToShow={1}
-        >
-          <img src={i2} alt="" />
-          <img src={i3} alt="" />
-          <img src={i4} alt="" />
-          <img src={i5} alt="" />
-          <img src={i6} alt="" />
-        </Carousel>
-      </div>
-      <div
-        style={{
-          padding: "20px 20px 20px -10px",
-          backgroundColor: "rgba(219,226,214,0.5)",
-        }}
-      >
-        <h1
-          style={{
-            fontSize: "5rem",
-            marginLeft: "50px",
-            color: "rgba(81,110,108,1)",
-          }}
-        >
-          Products
-        </h1>
-        <ProductPage />
       </div>
     </div>
   );
