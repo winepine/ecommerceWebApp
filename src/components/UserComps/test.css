@@ -27,12 +27,21 @@
 .topbar button {
   padding: 0;
 }
+.topbar img:hover {
+  opacity: 1;
+}
+.topbar img {
+  transition: ease-in-out all 0.2s;
+}
+.topbar img {
+  opacity: 0.7;
+}
 .logout {
-  border: 1px rgba(81, 110, 108, 0.7) solid;
+  border: 1px rgba(81, 110, 108, 0.5) solid;
   transition: ease-in-out all 0.2s;
 }
 .logout:hover {
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   background-color: rgba(81, 110, 108, 0.3);
 }
 button {

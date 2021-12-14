@@ -15,7 +15,13 @@ const CatNav = ({ setfunc }) => {
           <img src={cartimg} width="40px" alt="" />
         </button>
 
-        <img onClick={setfunc} height="70px" src={logo_sml} alt="" />
+        <img
+          className="logo"
+          onClick={setfunc}
+          height="70px"
+          src={logo_sml}
+          alt=""
+        />
         <button onClick={logout} className="logout">
           Logout
         </button>
