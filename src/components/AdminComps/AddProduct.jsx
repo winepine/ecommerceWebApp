@@ -73,8 +73,14 @@ const AddProduct = () => {
     //   }
     // );
     const formData = new FormData();
-    formData.append("filee", images);
-    formData.append("body", JSON.parse(productData));
+    formData.append("image", images);
+    formData.append("name", productData.name);
+    formData.append("price", productData.price);
+    formData.append("quantity", productData.quantity);
+    // formData.append("review", productData.review);
+    formData.append("brand", productData.brand);
+    formData.append("category", productData.category);
+    formData.append("description", productData.description);
     const config = {
       headers: {
         "content-type":
@@ -88,6 +94,7 @@ const AddProduct = () => {
         config
       )
       .then((response) => {
+        console.log(response);
         alert("The file is successfully uploaded");
       })
       .catch((error) => {});
