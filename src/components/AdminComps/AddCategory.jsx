@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../../styles/signin.css";
 const AddCategory = () => {
   const [name, setName] = useState("");
   const [parentID, setParentID] = useState(0);
+  const [categories, setCategories] = useState({});
   const addCat = async () => {
     let payload = {};
     if (!parentID) {
@@ -30,8 +31,17 @@ const AddCategory = () => {
       }
     );
     const res = await resposne.json();
-    console.log(res);
+    alert(JSON.stringify(res));
+    console.log();
   };
+  useEffect(() => {
+    const getCategories = async () => {
+      const resp = await fetch("/api//category/categories");
+      const categories = await resp.json();
+      setCategories(categories);
+    };
+    getCategories();
+  }, []);
   return (
     <div className="mainHeader">
       <h1>Add Category</h1>
@@ -53,6 +63,9 @@ const AddCategory = () => {
         <button onClick={addCat} className="adminField">
           Add Category
         </button>
+        <div className="contentScrollable">
+          <pre>{JSON.stringify(categories, null, 2)}</pre>
+        </div>
       </div>
     </div>
   );

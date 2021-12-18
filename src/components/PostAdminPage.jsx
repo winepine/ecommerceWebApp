@@ -49,7 +49,7 @@ const PostAdminPage = () => {
   return (
     <div>
       <div className="adminmain">
-        <div className="float-child2">
+        <div className="floatchild2">
           <div className="adminleft">
             <div className="adminName">
               <h2>Administrator</h2>
@@ -104,7 +104,7 @@ const PostAdminPage = () => {
             </div>
           </div>
         </div>
-        <div className="float-child2">
+        <div className="floatchild2">
           <div className="adminright">
             <UserContext.Provider value={userdata}>
               {buttons.addproduct && <AddProduct />}
