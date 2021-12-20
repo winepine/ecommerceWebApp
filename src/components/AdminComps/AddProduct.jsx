@@ -23,7 +23,7 @@ const AddProduct = () => {
     creator: "",
     brand: "",
     quantity: 0,
-    review: "",
+    review: [],
   });
   const [images, setImages] = useState([]);
   useEffect(() => {
@@ -77,7 +77,6 @@ const AddProduct = () => {
     formData.append("name", productData.name);
     formData.append("price", productData.price);
     formData.append("quantity", productData.quantity);
-    // formData.append("review", productData.review);
     formData.append("brand", productData.brand);
     formData.append("category", productData.category);
     formData.append("description", productData.description);
@@ -93,11 +92,11 @@ const AddProduct = () => {
         formData,
         config
       )
-      .then((response) => {
+      .then(response => {
         console.log(response);
         alert("The file is successfully uploaded");
       })
-      .catch((error) => {});
+      .catch(error => {});
     // const res = await resposne.json();
     // alert(JSON.stringify(res));
     // console.log();
@@ -131,18 +130,10 @@ const AddProduct = () => {
           onChange={handleFormChange}
         />
         <input
-          name="creator"
-          value={productData.creator}
-          placeholder="Creater"
-          className="adminField2"
-          type="text"
-          onChange={handleFormChange}
-        />
-        <input
           name="brand"
           value={productData.brand}
           placeholder="Brand"
-          className="adminField3"
+          className="adminField2"
           type="text"
           onChange={handleFormChange}
         />
@@ -150,7 +141,7 @@ const AddProduct = () => {
           name="quantity"
           value={productData.quantity}
           placeholder="Quantity"
-          className="adminField2"
+          className="adminField3"
           type="text"
           onChange={handleFormChange}
         />
@@ -158,15 +149,16 @@ const AddProduct = () => {
           name="description"
           value={productData.description}
           placeholder="Description"
-          className="adminField3"
+          className="adminField2"
           type="text"
           onChange={handleFormChange}
         />
         <input
           multiple="multiple"
-          onChange={(e) => setImages(e.target.files[0])}
+          onChange={e => setImages(e.target.files[0])}
           type="file"
           name="filee"
+          className="adminField3"
         />
         <button onClick={addPro} className="adminField2">
           Add Product

@@ -2,19 +2,29 @@ import "./test.css";
 import cartimg from "../../images/icons/cart.png";
 import logo_sml from "../../images/logo_sml.jpg";
 import { useNavigate } from "react-router";
+import { useEffect } from "react";
+import { useState } from "react";
 const CatNav = ({ setfunc }) => {
+  const [cats, setCats] = useState([]);
   const navigate = useNavigate();
   const logout = () => {
     localStorage.removeItem("ecomtoken");
     navigate("/");
   };
+  useEffect(() => {
+    const getCategories = async () => {
+      const response = await fetch("/api/category/categories");
+      const categories = await response.json();
+      setCats(categories.categoryList);
+    };
+    getCategories();
+  }, []);
   return (
     <div>
       <div className="topbar">
         <button>
           <img src={cartimg} width="40px" alt="" />
         </button>
-
         <img
           className="logo"
           onClick={setfunc}
@@ -26,6 +36,7 @@ const CatNav = ({ setfunc }) => {
           Logout
         </button>
       </div>
+      {JSON.stringify(cats)}
       <div
         // style={{ backgroundColor: "rgba(219,226,214,1)" }}
         className="flexbox-container"

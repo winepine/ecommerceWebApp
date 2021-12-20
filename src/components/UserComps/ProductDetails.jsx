@@ -6,7 +6,7 @@ import i3 from "../../images/icons/i3.png";
 const ProductDetails = ({ name }) => {
   return (
     <div className="productdesc">
-      <div className="container">
+      <div className="floatycontainer">
         <div className="float-child1">
           <img className="bigimg" src={iphoneimg} width="400px" alt="" />
           <div className="extras">
