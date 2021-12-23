@@ -250,6 +250,11 @@ button {
   margin-left: 25px;
   margin-top: 25px;
 }
+.thumbnail {
+  max-width: 150px;
+  max-height: 150px;
+  min-height: 150px;
+}
 .product button:hover {
   background: rgba(219, 226, 214, 1);
 }

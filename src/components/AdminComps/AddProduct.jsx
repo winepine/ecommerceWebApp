@@ -158,6 +158,7 @@ const AddProduct = () => {
           onChange={e => setImages(e.target.files[0])}
           type="file"
           name="filee"
+          accept="image/*"
           className="adminField3"
         />
         <button onClick={addPro} className="adminField2">

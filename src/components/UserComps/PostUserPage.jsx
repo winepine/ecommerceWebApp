@@ -91,7 +91,7 @@ const PostUserPage = () => {
         </div>
       ) : (
         <div>
-          <ProductDetails name={productinfo} />
+          <ProductDetails prodata={productinfo} />
         </div>
       )}
     </div>

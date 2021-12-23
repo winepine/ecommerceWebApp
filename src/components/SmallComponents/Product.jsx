@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import iphone from "../../images/iphone.jpg";
 import "../../styles/signin.css";
-const Product = (props) => {
+const Product = props => {
   const [styles, setStyles] = useState({
     border: "1px solid rgba(0,0,0,0.2)",
     padding: "30px",
@@ -9,15 +9,27 @@ const Product = (props) => {
     maxWidth: "220px",
     borderRadius: "10%",
   });
+  const [img, setimg] = useState("iphone.jpg");
+  useEffect(() => {
+    console.log(props.prodata.image);
+    if (props.prodata.image.length > 0) {
+      setimg(props.prodata.image[0].img);
+    }
+  }, []);
   return (
     <div className="product" style={styles}>
-      <img src={iphone} style={{ borderRadius: "10px" }} width="150px" alt="" />
-      <h2>iPhone 13 Pro</h2>
-      <p>Rs.74,000</p>
+      <img
+        src={"http://localhost:4000/" + img}
+        style={{ borderRadius: "10px" }}
+        className="thumbnail"
+        alt=""
+      />
+      <h2>{props.prodata.name}</h2>
+      <p>{props.prodata.price}</p>
       <button
         onClick={() => {
           props.setfunc(false);
-          props.setName("iPhone 13 Pro Max");
+          props.setName(props.prodata);
         }}
       >
         View Details
