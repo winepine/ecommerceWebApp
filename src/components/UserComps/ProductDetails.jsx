@@ -3,15 +3,44 @@ import iphoneimg from "../../images/iphone.jpg";
 import i1 from "../../images/icons/i1.png";
 import i2 from "../../images/icons/i2.png";
 import i3 from "../../images/icons/i3.png";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { UserContext } from "../customHooks/UserContext";
+import { useRef } from "react";
 const ProductDetails = props => {
+  const cartRef = useRef(null);
   const [img, setimg] = useState("iphone.jpg");
+  const userData = useContext(UserContext);
   useEffect(() => {
     console.log(props.prodata.image);
     if (props.prodata.image.length > 0) {
       setimg(props.prodata.image[0].img);
     }
   }, []);
+  const insertProduct = async () => {
+    const cartupdate = {
+      productId: props.prodata._id,
+      productQuantity: 1,
+      productPrice: props.prodata.price,
+      userId: userData._id,
+    };
+    let token = localStorage.getItem("ecomtoken");
+    const endpoint = "/api/cart/addItem?authorization=bearer " + token;
+    try {
+      const resposne = await fetch(endpoint, {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+        body: JSON.stringify(cartupdate),
+      });
+      const res = await resposne.json();
+      cartRef.current.innerHTML = "Product Added To Cart Successfully.";
+    } catch (x) {
+      cartRef.current.innerHTML =
+        "Something Went Wrong While Updating the Cart.";
+    }
+  };
   return (
     <div className="productdesc">
       <div className="floatycontainer">
@@ -38,7 +67,8 @@ const ProductDetails = props => {
           <h2>{props.prodata.name}</h2>
           <h6>{props.prodata.description}</h6>
           <h2>Rs. {props.prodata.price}</h2>
-          <button>Add To Cart</button>
+          <h6 ref={cartRef}></h6>
+          <button onClick={insertProduct}>Add To Cart</button>
         </div>
       </div>
     </div>

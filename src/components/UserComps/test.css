@@ -190,3 +190,6 @@ button {
   height: 70px;
   border-radius: 15%;
 }
+.cart h1 {
+  font-size: 4rem;
+}

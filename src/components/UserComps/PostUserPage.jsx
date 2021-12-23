@@ -9,6 +9,7 @@ import i6 from "../../images/icons/i6.png";
 import Carousel from "react-elastic-carousel";
 import ProductPage from "./ProductPage";
 import ProductDetails from "./ProductDetails";
+import { UserContext } from "../customHooks/UserContext";
 import "./test.css";
 const PostUserPage = () => {
   const CarouselRef = useRef(null);
@@ -91,7 +92,9 @@ const PostUserPage = () => {
         </div>
       ) : (
         <div>
-          <ProductDetails prodata={productinfo} />
+          <UserContext.Provider value={userdata}>
+            <ProductDetails prodata={productinfo} />
+          </UserContext.Provider>
         </div>
       )}
     </div>

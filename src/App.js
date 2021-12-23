@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LandingPage from "./components/landingPage";
 import PostAdminPage from "./components/PostAdminPage";
+import Cart from "./components/UserComps/cart";
 import CatNav from "./components/UserComps/CatNav";
 import PostUserPage from "./components/UserComps/PostUserPage";
 function App() {
