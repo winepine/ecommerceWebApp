@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/signin.css";
 import { makeStyles } from "@mui/styles";
@@ -18,9 +18,17 @@ const Signin = ({ setShow }) => {
   const [cnic, setCnic] = useState("");
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
+  const errorRef = useRef();
 
   // Submit Signin Function
   const SubmitSignin = async () => {
+    if (cnic === "") {
+      errorRef.current.innerHTML = "Email Field Is Empty Idiot";
+      return;
+    } else if (email === "") {
+      errorRef.current.innerHTML = "You Need A Pass To Login";
+      return;
+    }
     const resposne = await fetch("/api/signin/", {
       headers: {
         Accept: "application/json",
@@ -38,16 +46,21 @@ const Signin = ({ setShow }) => {
         localStorage.setItem("ecomtoken", achaResponse.token);
         localStorage.setItem("usertype", achaResponse.user.role);
         if (achaResponse.user.role === "admin") {
-          navigate("/postSignin");
+          errorRef.current.innerHTML = "Admin Login Successful.";
+          errorRef.current.style.color = "green";
+          setTimeout(() => {
+            navigate("/postSignin");
+          }, 1000);
         } else {
           navigate("/user/home");
         }
         return;
       }
     } catch (x) {
-      alert("Error Login Failed");
+      errorRef.current.innerHTML = "Something Went Wrong.";
     }
-    alert("Error Login Failed");
+    errorRef.current.innerHTML = "Invalid Email/Password";
+    // alert("Error Login Failed");
   };
   //-----
   const classes = useStyles();
@@ -62,7 +75,7 @@ const Signin = ({ setShow }) => {
             <TextField
               className={classes.root}
               value={cnic}
-              onChange={(s) => {
+              onChange={s => {
                 setCnic(s.target.value);
               }}
               id="outlined-basic"
@@ -73,7 +86,7 @@ const Signin = ({ setShow }) => {
             <TextField
               className={classes.root}
               value={email}
-              onChange={(s) => {
+              onChange={s => {
                 setEmail(s.target.value);
               }}
               id="outlined-basic"
@@ -82,6 +95,10 @@ const Signin = ({ setShow }) => {
               type="password"
               margin="dense"
             />
+            <h2
+              ref={errorRef}
+              style={{ color: "rgba(200,0,0,0.8)", marginLeft: "15%" }}
+            ></h2>
           </div>
           <div className="signButtons">
             <button className="si" onClick={SubmitSignin}>
