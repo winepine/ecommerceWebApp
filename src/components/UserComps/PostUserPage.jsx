@@ -1,6 +1,7 @@
 import CatNav from "./CatNav";
 import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router";
+import Cart from "./cart";
 import i2 from "../../images/icons/i2.png";
 import i3 from "../../images/icons/i3.png";
 import i4 from "../../images/icons/i4.png";
@@ -11,11 +12,13 @@ import ProductPage from "./ProductPage";
 import ProductDetails from "./ProductDetails";
 import { UserContext } from "../customHooks/UserContext";
 import "./test.css";
+import { unstable_createCssVarsProvider } from "@mui/system";
 const PostUserPage = () => {
   const CarouselRef = useRef(null);
   const navigate = useNavigate();
   const [userdata, setUserdata] = useState({});
   const [show, setShow] = useState(true);
+  const [showCart, setShowCart] = useState(false);
   const [productinfo, setProductinfo] = useState("");
   useEffect(() => {
     let token = localStorage.getItem("ecomtoken");
@@ -42,10 +45,17 @@ const PostUserPage = () => {
     localStorage.removeItem("ecomtoken");
     navigate("/");
   };
+  const getCartComp = ()=>{
+    setShowCart(true);
+  }
   return (
     <div>
-      <CatNav setfunc={() => setShow(true)} />
-      {show ? (
+      <CatNav getCart={()=>getCartComp()} setfunc={() => {setShowCart(false);setShow(true)}} />
+      {showCart ?  
+        <UserContext.Provider value={userdata}>
+         <Cart />
+      </UserContext.Provider>:
+      show ? (
         <div className="removeXsc">
           <div className="carousel-container">
             <Carousel

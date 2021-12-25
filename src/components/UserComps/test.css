@@ -193,6 +193,20 @@ button {
   height: 70px;
   border-radius: 15%;
 }
+.cart {
+  background-color: rgba(219, 226, 214, 1);
+  min-height: 80vh;
+}
 .cart h1 {
+  color: rgba(81, 110, 108, 1);
+  margin-left: 5%;
+  padding-top: 2%;
   font-size: 4rem;
+}
+.cart h2 {
+  color: rgba(81, 110, 108, 1);
+}
+.endcorners {
+  display: flex;
+  justify-content: space-around;
 }

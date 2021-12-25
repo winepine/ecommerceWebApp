@@ -4,7 +4,7 @@ import logo_sml from "../../images/logo_sml.jpg";
 import { useNavigate } from "react-router";
 import { useEffect } from "react";
 import { useState } from "react";
-const CatNav = ({ setfunc }) => {
+const CatNav = (props) => {
   const [cats, setCats] = useState([]);
   const navigate = useNavigate();
   const logout = () => {
@@ -22,12 +22,12 @@ const CatNav = ({ setfunc }) => {
   return (
     <div>
       <div className="topbar">
-        <button>
+        <button onClick={props.getCart}>
           <img src={cartimg} width="40px" alt="" />
         </button>
         <img
           className="logo"
-          onClick={setfunc}
+          onClick={props.setfunc}
           height="70px"
           src={logo_sml}
           alt=""
