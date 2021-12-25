@@ -115,6 +115,9 @@ button {
 .sc-iCfMLu button {
   display: none;
 }
+.removeXsc {
+  overflow-x: hidden;
+}
 .carousel-container {
   background-color: rgba(219, 226, 214, 1);
   transform: translateX(-1%);

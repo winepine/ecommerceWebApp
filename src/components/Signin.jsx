@@ -28,7 +28,10 @@ const Signin = ({ setShow }) => {
     } else if (email === "") {
       errorRef.current.innerHTML = "You Need A Pass To Login";
       return;
+    }else{
+      errorRef.current.innerHTML = "";
     }
+    try {
     const resposne = await fetch("/api/signin/", {
       headers: {
         Accept: "application/json",
@@ -41,7 +44,6 @@ const Signin = ({ setShow }) => {
       }),
     });
     const achaResponse = await resposne.json();
-    try {
       if (achaResponse.token) {
         localStorage.setItem("ecomtoken", achaResponse.token);
         localStorage.setItem("usertype", achaResponse.user.role);

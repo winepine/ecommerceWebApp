@@ -23,6 +23,7 @@ const ProductDetails = props => {
       productPrice: props.prodata.price,
       userId: userData._id,
     };
+    console.log(cartupdate)
     let token = localStorage.getItem("ecomtoken");
     const endpoint = "/api/cart/addItem?authorization=bearer " + token;
     try {

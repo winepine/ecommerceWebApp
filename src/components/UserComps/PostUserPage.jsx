@@ -46,7 +46,7 @@ const PostUserPage = () => {
     <div>
       <CatNav setfunc={() => setShow(true)} />
       {show ? (
-        <div>
+        <div className="removeXsc">
           <div className="carousel-container">
             <Carousel
               enableAutoPlay
@@ -77,7 +77,7 @@ const PostUserPage = () => {
             <h1
               style={{
                 fontSize: "5rem",
-                marginLeft: "50px",
+                marginLeft: "40px",
                 color: "rgba(81,110,108,1)",
                 fontFamily: "poppos",
               }}

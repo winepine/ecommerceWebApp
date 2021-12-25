@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Product from "../SmallComponents/Product";
+import "../../styles/signin.css"
 const ProductPage = props => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
