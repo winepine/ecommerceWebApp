@@ -199,11 +199,23 @@ h2 {
 .adminField {
   font-size: 1.5rem;
   width: 60vw;
-  border: rgba(81, 110, 108, 1) outset 1px;
+  color: rgba(81, 110, 108, 1);
+  border: rgba(81, 110, 108, 0.5) outset 1px;
   border-radius: 6px;
   background: rgba(219, 226, 214, 1);
   padding: 1rem;
 }
+.adminField5 {
+  font-size: 1.5rem;
+  width: 60vw;
+  height: 4rem;
+  color: rgba(81, 110, 108, 1);
+  border: rgba(81, 110, 108, 0.5) outset 1px;
+  border-radius: 6px;
+  background: rgba(219, 226, 214, 1);
+  padding: 1rem;
+}
+
 .adminField2 {
   font-size: 1.5rem;
   width: 29vw;

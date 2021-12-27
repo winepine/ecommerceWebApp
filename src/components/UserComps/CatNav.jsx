@@ -1,6 +1,7 @@
 import "./test.css";
 import cartimg from "../../images/icons/cart.png";
 import logo_sml from "../../images/logo_sml.jpg";
+import logoutpic from "../../images/icons/logout.png"
 import { useNavigate } from "react-router";
 import { useEffect } from "react";
 import { useState } from "react";
@@ -22,9 +23,6 @@ const CatNav = (props) => {
   return (
     <div>
       <div className="topbar">
-        <button onClick={props.getCart}>
-          <img src={cartimg} width="40px" alt="" />
-        </button>
         <img
           className="logo"
           onClick={props.setfunc}
@@ -32,15 +30,25 @@ const CatNav = (props) => {
           src={logo_sml}
           alt=""
         />
-        <button onClick={logout} className="logout">
-          Logout
+        <div>
+          <input className="adminField5" placeholder="Search A Product" type="text" name="" id="" />
+          <button>Search</button>
+        </div>
+        <div>
+
+        <button onClick={props.getCart}>
+          <img src={cartimg} width="40px" alt="" />
         </button>
+        <button onClick={logout} className="logout">
+          <img src={logoutpic} width="40px" alt="" />
+        </button>
+        </div>
       </div>
       <div className="flexbox-container">
         {cats.map(c => {
           return (
             <div key={c._id} className="flexbox-item">
-              <button>{c.name}</button>
+              <button>{c.name} ⌄</button>
               <div className="dropitems">
                 {c.children &&
                   c.children.map(child => (
