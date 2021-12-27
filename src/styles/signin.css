@@ -261,11 +261,13 @@ button {
 .product {
   margin-left: 25px;
   margin-top: 25px;
+  text-align: center;
 }
 .thumbnail {
   max-width: 150px;
   max-height: 150px;
   min-height: 150px;
+  opacity: 0.9;
 }
 .product button:hover {
   background: rgba(219, 226, 214, 1);

@@ -5,7 +5,7 @@ const Product = props => {
   const [styles, setStyles] = useState({
     border: "1px solid rgba(0,0,0,0.2)",
     padding: "30px",
-    backgroundColor: "white",
+    backgroundColor: "rgba(255,255,255,0.4)",
     maxWidth: "220px",
     borderRadius: "10%",
   });
@@ -20,12 +20,22 @@ const Product = props => {
     <div className="product" style={styles}>
       <img
         src={"http://localhost:4000/" + img}
-        style={{ borderRadius: "10px" }}
+        style={{
+          borderRadius: "10px",
+        }}
         className="thumbnail"
         alt=""
       />
-      <h2>{props.prodata.name}</h2>
-      <p>{props.prodata.price}</p>
+      <h2 style={{ fontFamily: "poppop", color: "rgba(81, 110, 108, 1)" }}>
+        {props.prodata.name}
+      </h2>
+      <p
+        style={{
+          color: "rgba(81, 110, 108, 1)",
+        }}
+      >
+        ${props.prodata.price}
+      </p>
       <button
         onClick={() => {
           props.setfunc(false);

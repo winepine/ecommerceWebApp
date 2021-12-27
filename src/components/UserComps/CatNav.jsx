@@ -1,13 +1,15 @@
 import "./test.css";
 import cartimg from "../../images/icons/cart.png";
 import logo_sml from "../../images/logo_sml.jpg";
-import logoutpic from "../../images/icons/logout.png"
+import logoutpic from "../../images/icons/logout.png";
 import { useNavigate } from "react-router";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useState } from "react";
-const CatNav = (props) => {
+import { SearchContext } from "../customHooks/SearchContext";
+const CatNav = props => {
   const [cats, setCats] = useState([]);
   const navigate = useNavigate();
+  const searchSetter = useContext(SearchContext);
   const logout = () => {
     localStorage.removeItem("ecomtoken");
     navigate("/");
@@ -31,26 +33,30 @@ const CatNav = (props) => {
           alt=""
         />
         <div>
-          <input className="adminField5" placeholder="Search A Product" type="text" name="" id="" />
-          <button>Search</button>
+          <input
+            className="adminField5"
+            placeholder="Try Searching An Item"
+            type="text"
+            onChange={e => searchSetter(e.target.value)}
+          />
         </div>
         <div>
-
-        <button onClick={props.getCart}>
-          <img src={cartimg} width="40px" alt="" />
-        </button>
-        <button onClick={logout} className="logout">
-          <img src={logoutpic} width="40px" alt="" />
-        </button>
+          <button onClick={props.getCart}>
+            <img src={cartimg} width="40px" alt="" />
+          </button>
+          <button onClick={logout} className="logout">
+            <img src={logoutpic} width="40px" alt="" />
+          </button>
         </div>
       </div>
       <div className="flexbox-container">
         {cats.map(c => {
           return (
             <div key={c._id} className="flexbox-item">
-              <button>{c.name} ⌄</button>
+              <button>{c.name}</button>
               <div className="dropitems">
                 {c.children &&
+                  //⌄
                   c.children.map(child => (
                     <button key={child._id}>{child.name}</button>
                   ))}

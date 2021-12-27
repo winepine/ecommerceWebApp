@@ -11,6 +11,7 @@ import Carousel from "react-elastic-carousel";
 import ProductPage from "./ProductPage";
 import ProductDetails from "./ProductDetails";
 import { UserContext } from "../customHooks/UserContext";
+import { SearchContext } from "../customHooks/SearchContext";
 import "./test.css";
 import { unstable_createCssVarsProvider } from "@mui/system";
 const PostUserPage = () => {
@@ -20,6 +21,7 @@ const PostUserPage = () => {
   const [show, setShow] = useState(true);
   const [showCart, setShowCart] = useState(false);
   const [productinfo, setProductinfo] = useState("");
+  const [searchValue, setSearchValue] = useState("");
   useEffect(() => {
     let token = localStorage.getItem("ecomtoken");
     if (!token) navigate("/");
@@ -45,20 +47,28 @@ const PostUserPage = () => {
     localStorage.removeItem("ecomtoken");
     navigate("/");
   };
-  const getCartComp = ()=>{
+  const getCartComp = () => {
     setShowCart(true);
-  }
+  };
   return (
     <div>
-      <CatNav getCart={()=>getCartComp()} setfunc={() => {setShowCart(false);setShow(true)}} />
-      {showCart ?  
+      <SearchContext.Provider value={setSearchValue}>
+        <CatNav
+          getCart={() => getCartComp()}
+          setfunc={() => {
+            setShowCart(false);
+            setShow(true);
+          }}
+        />
+      </SearchContext.Provider>
+      {showCart ? (
         <UserContext.Provider value={userdata}>
-         <Cart />
-      </UserContext.Provider>:
-      show ? (
+          <Cart />
+        </UserContext.Provider>
+      ) : show ? (
         <div className="removeXsc">
           <div className="carousel-container">
-            <Carousel
+            {/* <Carousel
               enableAutoPlay
               autoPlaySpeed={3000}
               ref={CarouselRef}
@@ -76,12 +86,12 @@ const PostUserPage = () => {
               <img src={i4} alt="" />
               <img src={i5} alt="" />
               <img src={i6} alt="" />
-            </Carousel>
+            </Carousel> */}
           </div>
           <div
             style={{
-              padding: "20px 20px 20px -10px",
-              // backgroundColor: "rgba(219,226,214,0.5)",
+              backgroundColor: "rgba(219,226,214,0.5)",
+              paddingTop: "1rem",
             }}
           >
             <h1
@@ -94,10 +104,12 @@ const PostUserPage = () => {
             >
               Products
             </h1>
-            <ProductPage
-              setfunc={() => setShow(false)}
-              setProductValues={setProductinfo}
-            />
+            <SearchContext.Provider value={searchValue}>
+              <ProductPage
+                setfunc={() => setShow(false)}
+                setProductValues={setProductinfo}
+              />
+            </SearchContext.Provider>
           </div>
         </div>
       ) : (

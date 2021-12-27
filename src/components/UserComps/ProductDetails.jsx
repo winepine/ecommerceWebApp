@@ -23,7 +23,7 @@ const ProductDetails = props => {
       productPrice: props.prodata.price,
       userId: userData._id,
     };
-    console.log(cartupdate)
+    console.log(cartupdate);
     let token = localStorage.getItem("ecomtoken");
     const endpoint = "/api/cart/addItem?authorization=bearer " + token;
     try {
@@ -52,7 +52,7 @@ const ProductDetails = props => {
             width="400px"
             alt=""
           />
-          <div className="extras">
+          {/* <div className="extras">
             <button>
               <img src={`http://localhost:4000/cart.png`} alt="" />
             </button>
@@ -62,12 +62,13 @@ const ProductDetails = props => {
             <button>
               <img src={i3} alt="" />
             </button>
-          </div>
+          </div> */}
         </div>
         <div className="float-child2">
           <h2>{props.prodata.name}</h2>
+          <h6>Brand: {props.prodata.brand}</h6>
           <h6>{props.prodata.description}</h6>
-          <h2>Rs. {props.prodata.price}</h2>
+          <h2>${props.prodata.price}</h2>
           <h6 ref={cartRef}></h6>
           <button onClick={insertProduct}>Add To Cart</button>
         </div>
