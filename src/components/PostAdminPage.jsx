@@ -7,11 +7,12 @@ import CreateAdmin from "./AdminComps/CreateAdmin";
 import DeleteUser from "./AdminComps/DeleteUser";
 import ViewDetails from "./AdminComps/ViewDetails";
 import { UserContext } from "./customHooks/UserContext";
+import adminlogo from "../images/adminlogo.png";
 const PostAdminPage = () => {
   const navigate = useNavigate();
   const [userdata, setUserdata] = useState({});
-  const onAdminButtonClick = (e) => {
-    Object.keys(buttons).forEach((v) => (buttons[v] = false));
+  const onAdminButtonClick = e => {
+    Object.keys(buttons).forEach(v => (buttons[v] = false));
     setButtons({
       ...buttons,
       [e.target.name]: true,
@@ -52,6 +53,7 @@ const PostAdminPage = () => {
         <div className="floatchild2">
           <div className="adminleft">
             <div className="adminName">
+              <img width="90px" src={adminlogo} alt="" />
               <h2>Administrator</h2>
               <h1>Management</h1>
             </div>

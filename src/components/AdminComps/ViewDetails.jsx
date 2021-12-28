@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { useNavigate } from "react-router";
 import "../../styles/signin.css";
 import { UserContext } from "../customHooks/UserContext";
+import adminlogo from "../../images/adminlogo.png";
 const ViewDetails = () => {
   const navigate = useNavigate();
   const logout = () => {
@@ -13,10 +14,14 @@ const ViewDetails = () => {
     <div className="mainHeader">
       <h1>Admin Details</h1>
       <div className="adminforms">
-        <h2>FirstName: {userData.firstName}</h2>
-        <h2>LastName: {userData.lastName}</h2>
-        <h2>Email: {userData.email}</h2>
-        <h2>Role: {userData.role}</h2>
+        <div className="card">
+          <img width="60px" style={{ opacity: "0.8" }} src={adminlogo} alt="" />
+          <h2>
+            {userData.firstName} {userData.lastName}
+          </h2>
+          <h2>{userData.email}</h2>
+          <h2>Role: {userData.role}</h2>
+        </div>
         <input
           type="password"
           className="adminField"
