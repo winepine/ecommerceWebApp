@@ -8,6 +8,7 @@ import DeleteUser from "./AdminComps/DeleteUser";
 import ViewDetails from "./AdminComps/ViewDetails";
 import { UserContext } from "./customHooks/UserContext";
 import adminlogo from "../images/adminlogo.png";
+import HomeStats from "./AdminComps/HomeStats";
 const PostAdminPage = () => {
   const navigate = useNavigate();
   const [userdata, setUserdata] = useState({});
@@ -41,7 +42,8 @@ const PostAdminPage = () => {
     document.title = "Admin Page";
   }, []);
   const [buttons, setButtons] = useState({
-    addproduct: true,
+    homepage: true,
+    addproduct: false,
     viewdetails: false,
     addcategory: false,
     deleteuser: false,
@@ -58,6 +60,15 @@ const PostAdminPage = () => {
               <h1>Management</h1>
             </div>
             <div className="adminButtons">
+              <button
+                name="homepage"
+                className={
+                  buttons.homepage ? "adminSelected" : "adminNotSelected"
+                }
+                onClick={onAdminButtonClick}
+              >
+                Quick Look
+              </button>
               <button
                 name="addproduct"
                 className={
@@ -85,6 +96,7 @@ const PostAdminPage = () => {
               >
                 Add Category
               </button>
+
               <button
                 name="deleteuser"
                 className={
@@ -109,6 +121,7 @@ const PostAdminPage = () => {
         <div className="floatchild2">
           <div className="adminright">
             <UserContext.Provider value={userdata}>
+              {buttons.homepage && <HomeStats />}
               {buttons.addproduct && <AddProduct />}
               {buttons.viewdetails && <ViewDetails />}
               {buttons.addcategory && <AddCategory />}

@@ -165,7 +165,7 @@ const AddProduct = () => {
           Add Product
         </button>
       </div>
-      <div style={{ maxHeight: "40vh" }} className="contentScrollable">
+      <div style={{ maxHeight: "35vh" }} className="contentScrollable">
         <pre>{JSON.stringify(products, null, 2)}</pre>
       </div>
     </div>
