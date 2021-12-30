@@ -1,8 +1,9 @@
 import { useContext, useEffect, useState } from "react";
+import React from "react";
 import Product from "../SmallComponents/Product";
 import "../../styles/signin.css";
 import { SearchContext } from "../customHooks/SearchContext";
-const ProductPage = props => {
+const ProductPage = React.memo(props => {
   const [products, setProducts] = useState([]);
   const searchVal = useContext(SearchContext);
   useEffect(() => {
@@ -13,6 +14,9 @@ const ProductPage = props => {
     };
     getProducts();
   }, []);
+  useEffect(()=>{
+    console.log("RENDERING...");
+  })
   return (
     <div className="productList">
       {products.map(
@@ -32,5 +36,5 @@ const ProductPage = props => {
       </div> */}
     </div>
   );
-};
+});
 export default ProductPage;

@@ -17,7 +17,8 @@ const Cart = () => {
         body: JSON.stringify({userId: userData._id}),
       });
       const cart = await response.json();
-      setCart(cart.user[0].Items)
+      console.log(userData);
+      setCart(cart.user.Items)
     }
     const getProds = async()=>{
       const response2 = await fetch("/api/product/products");

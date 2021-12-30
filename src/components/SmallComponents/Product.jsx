@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
+import React from "react";
 import iphone from "../../images/iphone.jpg";
 import "../../styles/signin.css";
-const Product = props => {
+const Product = React.memo(props => {
   const [styles, setStyles] = useState({
     border: "1px solid rgba(0,0,0,0.2)",
     padding: "30px",
@@ -11,11 +12,13 @@ const Product = props => {
   });
   const [img, setimg] = useState("iphone.jpg");
   useEffect(() => {
-    console.log(props.prodata.image);
     if (props.prodata.image.length > 0) {
       setimg(props.prodata.image[0].img);
     }
   }, []);
+  useEffect(()=>{
+    console.log("RENDERING PRODUCT...");
+  })
   return (
     <div className="product" style={styles}>
       <img
@@ -46,5 +49,5 @@ const Product = props => {
       </button>
     </div>
   );
-};
+});
 export default Product;

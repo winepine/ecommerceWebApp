@@ -11,7 +11,6 @@ const ProductDetails = props => {
   const [img, setimg] = useState("iphone.jpg");
   const userData = useContext(UserContext);
   useEffect(() => {
-    console.log(props.prodata.image);
     if (props.prodata.image.length > 0) {
       setimg(props.prodata.image[0].img);
     }
@@ -39,7 +38,7 @@ const ProductDetails = props => {
       cartRef.current.innerHTML = "Product Added To Cart Successfully.";
     } catch (x) {
       cartRef.current.innerHTML =
-        "Something Went Wrong While Updating the Cart.";
+      "Something Went Wrong While Updating the Cart.";
     }
   };
   return (
