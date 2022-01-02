@@ -1,5 +1,5 @@
 import CatNav from "./CatNav";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import { useNavigate } from "react-router";
 import Cart from "./cart";
 import i2 from "../../images/icons/i2.png";
@@ -14,6 +14,7 @@ import { UserContext } from "../customHooks/UserContext";
 import { SearchContext } from "../customHooks/SearchContext";
 import "./test.css";
 import { unstable_createCssVarsProvider } from "@mui/system";
+import { ProductsContext } from "../customHooks/ProductsContext";
 const PostUserPage = () => {
   const CarouselRef = useRef(null);
   const navigate = useNavigate();
@@ -21,7 +22,18 @@ const PostUserPage = () => {
   const [show, setShow] = useState(true);
   const [showCart, setShowCart] = useState(false);
   const [productinfo, setProductinfo] = useState("");
+  const [products, setProducts] = useState([]);
   const [searchValue, setSearchValue] = useState("");
+  const headerTag = useRef();
+  useEffect(() => {
+    headerTag.current.innerHTML = "Products";
+    const getProducts = async () => {
+      const response = await fetch("/api/product/products");
+      const prods = await response.json();
+      setProducts(prods.user);
+    };
+    getProducts();
+  }, []);
   useEffect(() => {
     let token = localStorage.getItem("ecomtoken");
     if (!token) navigate("/");
@@ -50,6 +62,9 @@ const PostUserPage = () => {
   const getCartComp = () => {
     setShowCart(true);
   };
+  const setterProp = useCallback(()=>{
+    setShow(false);
+  },[])
   return (
     <div>
       <SearchContext.Provider value={setSearchValue}>
@@ -59,6 +74,8 @@ const PostUserPage = () => {
             setShowCart(false);
             setShow(true);
           }}
+          categoryChecker={setProducts}
+          reference={headerTag}
         />
       </SearchContext.Provider>
       {showCart ? (
@@ -95,6 +112,7 @@ const PostUserPage = () => {
             }}
           >
             <h1
+            ref={headerTag}
               style={{
                 fontSize: "5rem",
                 marginLeft: "40px",
@@ -105,10 +123,12 @@ const PostUserPage = () => {
               Products
             </h1>
             <SearchContext.Provider value={searchValue}>
+              <ProductsContext.Provider value={products}>
               <ProductPage
-                setfunc={() => setShow(false)}
+                setfunc={setterProp}
                 setProductValues={setProductinfo}
-              />
+                />
+                </ProductsContext.Provider>
             </SearchContext.Provider>
           </div>
         </div>

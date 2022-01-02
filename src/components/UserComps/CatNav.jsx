@@ -22,6 +22,24 @@ const CatNav = props => {
     };
     getCategories();
   }, []);
+  const CatSetter = async (event) =>{
+    props.reference.current.innerHTML = event.target.innerHTML;
+    const response = await fetch('/api/product/prodcat',
+    {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify({
+        name: event.target.innerHTML,
+      }),
+    }
+    );
+    const prods = await response.json();
+    console.log(prods.products)
+    props.categoryChecker(prods.products);
+  }
   return (
     <div>
       <div className="topbar">
@@ -53,12 +71,12 @@ const CatNav = props => {
         {cats.map(c => {
           return (
             <div key={c._id} className="flexbox-item">
-              <button>{c.name}</button>
+              <button onClick={CatSetter}>{c.name}</button>
               <div className="dropitems">
                 {c.children &&
                   //⌄
                   c.children.map(child => (
-                    <button key={child._id}>{child.name}</button>
+                    <button onClick={CatSetter} key={child._id}>{child.name}</button>
                   ))}
               </div>
             </div>
