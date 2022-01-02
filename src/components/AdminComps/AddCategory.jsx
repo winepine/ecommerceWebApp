@@ -1,10 +1,16 @@
 import { useState, useEffect } from "react";
 import "../../styles/signin.css";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const AddCategory = () => {
   const [name, setName] = useState("");
   const [parentID, setParentID] = useState(0);
   const [categories, setCategories] = useState({});
   const addCat = async () => {
+    if(name===""){
+      toast.error("Category Field Empty!");
+      return;
+    }
     let payload = {};
     if (!parentID) {
       payload = {
@@ -31,8 +37,7 @@ const AddCategory = () => {
       }
     );
     const res = await resposne.json();
-    alert(JSON.stringify(res));
-    console.log();
+    toast.success("Category Added!")
   };
   useEffect(() => {
     const getCategories = async () => {
@@ -44,6 +49,11 @@ const AddCategory = () => {
   }, []);
   return (
     <div className="mainHeader">
+      <ToastContainer 
+      position="top-right"
+      style={{
+        width:"500px"
+      }}/>
       <h1>Add Category</h1>
       <div className="adminforms">
         <input

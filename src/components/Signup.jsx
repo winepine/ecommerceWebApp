@@ -3,7 +3,8 @@ import "../styles/signin.css";
 import { useState } from "react";
 import { TextField } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 /*
  * Styles For Material UI
  */
@@ -29,6 +30,28 @@ const SignUp = ({ setShow }) => {
    * SignUp Buttons Submits Data to API , POST Type request
    */
   const submitFunction = async () => {
+    if(inputData.firstName===""){
+      toast.error("First Name Is Required!");
+      return;
+    }
+    if(inputData.lastName===""){
+      toast.error("Last Name Is Required!");
+      return;
+    }
+    if(inputData.email===""){
+      toast.error("Email Is Required!");
+      return;
+    }
+    if(inputData.cnic===""){
+      toast.error("CNIC Is Required!");
+      return;
+    }
+    if(inputData.password===""){
+      toast.error("Password Is Required!");
+      return;
+    }
+    try{
+
     const resposne = await fetch("/api/signup", {
       headers: {
         Accept: "application/json",
@@ -39,6 +62,10 @@ const SignUp = ({ setShow }) => {
     });
     const res = await resposne.json();
     console.log(res);
+  }catch(x){
+    toast.error("Express Server Not Running");
+
+  }
   };
   // ----
   const classes = useStyles();
@@ -55,6 +82,12 @@ const SignUp = ({ setShow }) => {
   // rendering on screen
   return (
     <div className="mContainer">
+      <ToastContainer
+      position="top-left"
+      style={{
+        width:"500px"
+      }}
+      />
       <div className="float-child">
         <div className="white">
           <h5>SignUp</h5>

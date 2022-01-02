@@ -29,7 +29,7 @@ const CreateAdmin = () => {
     if (res.message === "User added") {
       setAdminAdded(true);
     }
-    console.log(res);
+    alert(res);
   };
   return (
     <div className="mainHeader">

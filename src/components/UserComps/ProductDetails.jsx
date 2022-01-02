@@ -6,6 +6,8 @@ import i3 from "../../images/icons/i3.png";
 import { useState, useEffect, useContext } from "react";
 import { UserContext } from "../customHooks/UserContext";
 import { useRef } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const ProductDetails = props => {
   const cartRef = useRef(null);
   const [img, setimg] = useState("iphone.jpg");
@@ -35,14 +37,19 @@ const ProductDetails = props => {
         body: JSON.stringify(cartupdate),
       });
       const res = await resposne.json();
-      cartRef.current.innerHTML = "Product Added To Cart Successfully.";
+      toast.info("Product Added To Cart!")
     } catch (x) {
-      cartRef.current.innerHTML =
-      "Something Went Wrong While Updating the Cart.";
+      toast.error("Something Went Wrong While Updating the Cart.")
     }
   };
   return (
     <div className="productdesc">
+      <ToastContainer 
+      position="top-right"
+      style={{
+        width:"500px"
+      }}
+      />
       <div className="floatycontainer">
         <div className="float-child1">
           <img

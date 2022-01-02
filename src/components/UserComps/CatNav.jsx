@@ -23,7 +23,7 @@ const CatNav = props => {
     getCategories();
   }, []);
   const CatSetter = async (event) =>{
-    props.reference.current.innerHTML = event.target.innerHTML;
+    props.setfunc();
     const response = await fetch('/api/product/prodcat',
     {
       headers: {
@@ -37,7 +37,7 @@ const CatNav = props => {
     }
     );
     const prods = await response.json();
-    console.log(prods.products)
+    props.reference.current.innerHTML = event.target.innerHTML;
     props.categoryChecker(prods.products);
   }
   return (

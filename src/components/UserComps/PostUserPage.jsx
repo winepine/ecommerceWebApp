@@ -15,6 +15,9 @@ import { SearchContext } from "../customHooks/SearchContext";
 import "./test.css";
 import { unstable_createCssVarsProvider } from "@mui/system";
 import { ProductsContext } from "../customHooks/ProductsContext";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const PostUserPage = () => {
   const CarouselRef = useRef(null);
   const navigate = useNavigate();
@@ -54,6 +57,7 @@ const PostUserPage = () => {
     }
     fetchData();
     document.title = "FYWEB Home";
+    toast.success("Customer Logged In Succesfully!")
   }, []);
   const logout = () => {
     localStorage.removeItem("ecomtoken");
@@ -67,6 +71,12 @@ const PostUserPage = () => {
   },[])
   return (
     <div>
+      <ToastContainer 
+        position="top-right"
+        style={{
+          width:"500px"
+        }}
+        />
       <SearchContext.Provider value={setSearchValue}>
         <CatNav
           getCart={() => getCartComp()}

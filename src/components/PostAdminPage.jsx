@@ -9,6 +9,8 @@ import ViewDetails from "./AdminComps/ViewDetails";
 import { UserContext } from "./customHooks/UserContext";
 import adminlogo from "../images/adminlogo.png";
 import HomeStats from "./AdminComps/HomeStats";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const PostAdminPage = () => {
   const navigate = useNavigate();
   const [userdata, setUserdata] = useState({});
@@ -40,6 +42,7 @@ const PostAdminPage = () => {
     }
     fetchData();
     document.title = "Admin Page";
+    toast.success("Admin Logged In Successfully!")
   }, []);
   const [buttons, setButtons] = useState({
     homepage: true,
@@ -52,6 +55,12 @@ const PostAdminPage = () => {
   return (
     <div>
       <div className="adminmain">
+        <ToastContainer 
+        position="top-right"
+        style={{
+          width:"500px"
+        }}
+        />
         <div className="floatchild2">
           <div className="adminleft">
             <div className="adminName">

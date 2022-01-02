@@ -1,18 +1,9 @@
 import { useState, useEffect } from "react";
 import "../../styles/signin.css";
 import axios from "axios";
-/*
-const {
-    name,
-    price,
-    description,
-    category,
-    creator,
-    brand,
-    quantity,
-    review,
-  } = req.body;
-*/
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const AddProduct = () => {
   const [products, setProducts] = useState({});
   const [productData, setProductData] = useState({
@@ -35,43 +26,24 @@ const AddProduct = () => {
     getProducts();
   }, []);
   const handleFormChange = ({ target }) => {
-    //console.log(e.target.value);
-    //console.log(e.target.name);
     setProductData({
       ...productData,
       [target.name]: target.value,
     });
   };
   const addPro = async () => {
-    console.log("Yess");
+    if(
+      productData.name=== "" || 
+      productData.price=== 0 ||
+      productData.description=== "" ||
+      productData.category=== "" ||
+      productData.brand=== ""||
+      productData.quantity=== 0
+    ){
+      toast.error("Fill All The Fields.!");
+      return;
+    }
     let token = localStorage.getItem("ecomtoken");
-    // const resposne = await fetch(
-    //   "/api/product/create/?authorization=bearer " + token,
-    //   {
-    //     headers: {
-    //       Accept: "application/json",
-    //       "Content-Type": "application/json",
-    //     },
-    //     method: "POST",
-    //     files: images,
-    //     body: JSON.stringify(productData),
-    //   }
-    // );
-    // const formData = new FormData();
-    // formData.append("file", images);
-    // console.log(formData);
-    // const resposne = await axios.post(
-    //   "/api/product/create/?authorization=bearer " + token,
-    //   formData,
-    //   {
-    //     headers: {
-    //       Accept: "application/json",
-    //       "Content-Type": "multipart/form-data",
-    //     },
-    //     method: "POST",
-    //     body: JSON.stringify(productData),
-    //   }
-    // );
     const formData = new FormData();
     formData.append("image", images);
     formData.append("name", productData.name);
@@ -93,16 +65,18 @@ const AddProduct = () => {
         config
       )
       .then(response => {
-        console.log(response);
-        alert("The file is successfully uploaded");
+        toast.success("Request Completed!")
       })
-      .catch(error => {});
-    // const res = await resposne.json();
-    // alert(JSON.stringify(res));
-    // console.log();
+      .catch(error => toast.warning(error));
   };
   return (
     <div className="mainHeader">
+      <ToastContainer 
+      position="top-right"
+      style={{
+        width:"500px"
+      }}
+      />
       <h1>Add Product</h1>
       <div className="adminforms">
         <input

@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom";
 import "../styles/signin.css";
 import { makeStyles } from "@mui/styles";
 import TextField from "@mui/material/TextField";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const useStyles = makeStyles({
   root: {
     color: "black",
@@ -23,13 +24,11 @@ const Signin = ({ setShow }) => {
   // Submit Signin Function
   const SubmitSignin = async () => {
     if (cnic === "") {
-      errorRef.current.innerHTML = "Email Field Is Empty Idiot";
+      toast.error("Please Fill The Email Field");
       return;
     } else if (email === "") {
-      errorRef.current.innerHTML = "You Need A Pass To Login";
+      toast.error("Please Fill The Password Field");
       return;
-    }else{
-      errorRef.current.innerHTML = "";
     }
     try {
     const resposne = await fetch("/api/signin/", {
@@ -43,26 +42,22 @@ const Signin = ({ setShow }) => {
         password: email,
       }),
     });
+
     const achaResponse = await resposne.json();
       if (achaResponse.token) {
         localStorage.setItem("ecomtoken", achaResponse.token);
         localStorage.setItem("usertype", achaResponse.user.role);
         if (achaResponse.user.role === "admin") {
-          errorRef.current.innerHTML = "Admin Login Successful.";
-          errorRef.current.style.color = "green";
-          setTimeout(() => {
             navigate("/postSignin");
-          }, 1000);
         } else {
           navigate("/user/home");
         }
         return;
       }
     } catch (x) {
-      errorRef.current.innerHTML = "Something Went Wrong.";
+    toast.error("Server Not Running!");
     }
-    errorRef.current.innerHTML = "Invalid Email/Password";
-    // alert("Error Login Failed");
+    toast.error("Invalid Credentials Entered");
   };
   //-----
   const classes = useStyles();
@@ -70,6 +65,12 @@ const Signin = ({ setShow }) => {
   //- -----
   return (
     <div className="mContainer">
+      <ToastContainer
+      position="top-left"
+      style={{
+        width:"500px"
+      }}
+      />
       <div className="float-child">
         <div className="white">
           <h1>Signin</h1>
